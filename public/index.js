@@ -1,3 +1,5 @@
+
+
 'use strict';
 
 //list of cars
@@ -165,7 +167,50 @@ var rentalModifications = [{
   'pickupDate': '2015-12-05'
 }];
 
-console.log(cars);
+function Price() {
+    var CarsTab = new Object();
+    CarsTab.CarID = [];
+    CarsTab.TabPriceDay = [];
+    CarsTab.TabPriceKm = [];
+
+    var RentalsTab = new Object();
+    RentalsTab.RentalId = [];
+    RentalsTab.TabNbDay = [];
+    RentalsTab.TabNbKm = [];
+
+
+    cars.forEach(function Price(element) {
+        CarsTab.CarID.push(element.id);
+        CarsTab.TabPriceDay.push(element.pricePerDay);
+        CarsTab.TabPriceKm.push(element.pricePerKm);
+    })
+
+    rentals.forEach(function Price(element) {
+        var pickD = new Date(element.pickupDate);
+        var returnD = new Date(element.returnDate);
+        var nbDays = returnD - pickD;
+
+        RentalsTab.RentalId.push(element.carId);
+        RentalsTab.TabNbDay.push(nbDays / (24 * 60 * 60 * 1000));
+        RentalsTab.TabNbKm.push(element.distance);
+    })
+
+   // console.log(CarsTab[1]);
+   // console.log(RentalsTab);*/
+
+
+    for (var i = 0; i< 3;i++) {
+
+        if(CarsTab[i] == RentalsTab[i])
+        {
+        
+        }
+    }
+}
+Price();
+/*console.log(cars.id);
 console.log(rentals);
 console.log(actors);
 console.log(rentalModifications);
+Price();*/
+
