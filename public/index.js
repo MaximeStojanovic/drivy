@@ -199,13 +199,17 @@ function Price() {
    // console.log(RentalsTab);*/
 
 
-    for (var i = 0; i< 3;i++) {
+    
 
-        if(CarsTab[i] == RentalsTab[i])
-        {
-        
-        }
-    }
+            for (var pro in CarsTab)
+            {
+                console.log(CarsTab[pro]);
+            }
+            for (var prop in RentalsTab)
+            {
+
+            }
+          
 }
 Price();
 /*console.log(cars.id);
