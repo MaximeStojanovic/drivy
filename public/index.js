@@ -206,6 +206,7 @@ function Price() {
                 rentalPrice = (time + distance);
                 reduction = rentalPrice * sale;
                 var rentalPrice2 = rentalPrice - reduction;
+                element2.price = rentalPrice2;
 
                 
 
