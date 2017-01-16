@@ -177,23 +177,35 @@ function Price() {
     var nbKm;
     var carPriceKm;
     var rentalPrice;
+    var sale = 0;
+    var reduction;
     cars.forEach(function Get(element)
     {
-        rentals.forEach(function Get2(element2)
-        {
-            if (element2.carId == element.id)
-            {
+        rentals.forEach(function Get2(element2) {
+            if (element2.carId == element.id) {
 
                 carPriceDay = element.pricePerDay;
                 carPriceKm = element.pricePerKm;
                 pDate = new Date(element2.pickupDate);
                 rDate = new Date(element2.returnDate);
-                rentalDays = ((rDate - pDate)/(24 * 60 * 60 * 1000));
+                rentalDays = ((rDate - pDate) / (24 * 60 * 60 * 1000));
+                if (rentalDays > 10) {
+                    sale = 0.5;
+                }
+                else if (rentalDays > 4) {
+                    sale = 0.3;                
+                }
+                else if (rentalDays > 1) {
+                    sale = 0.1;
+                }
                 nbKm = element2.distance;
                 time = rentalDays * carPriceDay;
                 distance = nbKm * carPriceKm;
-                rentalPrice = time + distance;
-                console.log(rentalPrice);
+                rentalPrice = (time + distance);
+                reduction = rentalPrice * sale;
+                var rentalPrice2 = rentalPrice - reduction;
+
+                console.log(rentalPrice2);
             }
         }
         )
