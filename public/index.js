@@ -168,48 +168,37 @@ var rentalModifications = [{
 }];
 
 function Price() {
-    var CarsTab = new Object();
-    CarsTab.CarID = [];
-    CarsTab.TabPriceDay = [];
-    CarsTab.TabPriceKm = [];
-
-    var RentalsTab = new Object();
-    RentalsTab.RentalId = [];
-    RentalsTab.TabNbDay = [];
-    RentalsTab.TabNbKm = [];
-
-
-    cars.forEach(function Price(element) {
-        CarsTab.CarID.push(element.id);
-        CarsTab.TabPriceDay.push(element.pricePerDay);
-        CarsTab.TabPriceKm.push(element.pricePerKm);
-    })
-
-    rentals.forEach(function Price(element) {
-        var pickD = new Date(element.pickupDate);
-        var returnD = new Date(element.returnDate);
-        var nbDays = returnD - pickD;
-
-        RentalsTab.RentalId.push(element.carId);
-        RentalsTab.TabNbDay.push(nbDays / (24 * 60 * 60 * 1000));
-        RentalsTab.TabNbKm.push(element.distance);
-    })
-
-   // console.log(CarsTab[1]);
-   // console.log(RentalsTab);*/
-
-
-    
-
-            for (var pro in CarsTab)
-            {
-                console.log(CarsTab[pro]);
-            }
-            for (var prop in RentalsTab)
+    var time;
+    var rentalDays;
+    var pDate;
+    var rDate;
+    var carPriceDay;
+    var distance;
+    var nbKm;
+    var carPriceKm;
+    var rentalPrice;
+    cars.forEach(function Get(element)
+    {
+        rentals.forEach(function Get2(element2)
+        {
+            if (element2.carId == element.id)
             {
 
+                carPriceDay = element.pricePerDay;
+                carPriceKm = element.pricePerKm;
+                pDate = new Date(element2.pickupDate);
+                rDate = new Date(element2.returnDate);
+                rentalDays = ((rDate - pDate)/(24 * 60 * 60 * 1000));
+                nbKm = element2.distance;
+                time = rentalDays * carPriceDay;
+                distance = nbKm * carPriceKm;
+                rentalPrice = time + distance;
+                console.log(rentalPrice);
             }
-          
+        }
+        )
+    }
+    )
 }
 Price();
 /*console.log(cars.id);
