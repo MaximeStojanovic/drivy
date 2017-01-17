@@ -180,6 +180,7 @@ function Price() {
     var sale = 0;
     var reduction;
     var com = 0;
+    var deductible = 0;
     cars.forEach(function Get(element)
     {
         rentals.forEach(function Get2(element2)
@@ -205,15 +206,20 @@ function Price() {
                 distance = nbKm * carPriceKm;
                 rentalPrice = (time + distance);
                 reduction = rentalPrice * sale;
-                var rentalPrice2 = rentalPrice - reduction;
+        
+                if (element2.options.deductibleReduction == true)
+                {
+                    deductible = 4;
+                }
+
+                var rentalPrice2 = rentalPrice - reduction + deductible;
                 element2.price = rentalPrice2;
 
-                
 
-                com= 0.3 * rentalPrice2;
+                com = 0.3 * rentalPrice2 - deductible;
                 element2.commission.insurance = 0.5 * com;
                 element2.commission.assistance = 1;
-                element2.commission.drivy = com - (element2.commission.insurance + element2.commission.assistance);
+                element2.commission.drivy = com - (element2.commission.insurance + element2.commission.assistance) + deductible;
 
                 console.log(rentalPrice2);
                 
